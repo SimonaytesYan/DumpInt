@@ -11,6 +11,7 @@ class NotInt
     static FILE* not_int_output;
     
     int value;
+    int operation_count;
     int id;
 
     //===============================CONSTRUCTORS===============================
