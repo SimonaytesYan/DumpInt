@@ -7,7 +7,8 @@
 class NotInt
 {
     public :
-    static int not_int_counter;
+    static int   not_int_counter;
+    static FILE* not_int_output;
     
     int value;
     int id;

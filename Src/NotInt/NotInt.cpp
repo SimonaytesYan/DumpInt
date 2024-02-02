@@ -1,6 +1,9 @@
 #include "NotInt.h"
 
-int NotInt::not_int_counter = 0;
+int   NotInt::not_int_counter = 0;
+FILE* NotInt::not_int_output          = nullptr;
+
+const char* NodePrototype = "Node%d[fillcolor = \"#B1FF9F\", label = \"<i> id: %d | <v> val: %d \"]\n";
 
 //===============================CONSTRUCTORS===============================
 
@@ -9,7 +12,9 @@ NotInt::NotInt()
     NotInt::not_int_counter++;
     id    = not_int_counter;
     value = rand();
+
     printf("STD CTOR, value = %d id = %d\n", value, id);
+    fprintf(NotInt::not_int_output, NodePrototype, id, id, value);
 }
 
 NotInt::NotInt(int new_value)
@@ -18,6 +23,7 @@ NotInt::NotInt(int new_value)
     id    = not_int_counter;
     value = new_value;
     printf("CTOR, value = %d id = %d\n", value, id);
+    fprintf(NotInt::not_int_output, NodePrototype, id, id, value);
 }
 
 NotInt::NotInt(const NotInt& other)
@@ -26,6 +32,7 @@ NotInt::NotInt(const NotInt& other)
     id    = not_int_counter;
     value = other.value;
     printf("CTOR(const NotInt&), value = %d id = %d\n", value, id);
+    fprintf(NotInt::not_int_output, NodePrototype, id, id, value);
 }
 
 //=================================ARITHMETIC===================================
