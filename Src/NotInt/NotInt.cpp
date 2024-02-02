@@ -282,9 +282,16 @@ NotInt& NotInt::operator()()
 
 NotInt& NotInt::operator->()
 {
-    printf("operator()(const NotInt&, value = %d id = %d\n", value, id);
+    printf("operator->(const NotInt&, value = %d id = %d\n", value, id);
     return *this;
 }
+
+NotInt& NotInt::operator*()
+{
+    printf("operator*(const NotInt&, value = %d id = %d\n", value, id);
+    return *this;
+}
+
 
 NotInt::~NotInt()
 {

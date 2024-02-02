@@ -71,6 +71,7 @@ class NotInt
     NotInt& operator[](const NotInt& index);
     NotInt& operator()();
     NotInt& operator->();
+    NotInt& operator*();
 
     ~NotInt();
 };
