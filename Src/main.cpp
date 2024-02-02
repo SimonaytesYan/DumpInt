@@ -2,7 +2,7 @@
 
 #include "NotInt/NotInt.h"
 
-const char kCommandPrototype[] = "dot GraphLog%d -o log%d.png -T png";
+const char kCommandPrototype[] = "dot GraphLog%d.log -o log%d.png -T png";
 
 NotInt max(NotInt a, NotInt b)
 {
@@ -32,7 +32,7 @@ void StartGraphicDump()
     dump_counter++;
 
     char file_name[100];
-    sprintf(file_name, "GraphLog%d", dump_counter);
+    sprintf(file_name, "GraphLog%d.log", dump_counter);
 
     NotInt::not_int_output = fopen(file_name, "w");
     fprintf(NotInt::not_int_output, "digraph G{\n"
@@ -61,7 +61,6 @@ int main()
     printf("max(1, 2) = %d\n", max(1, 2).value);
     printf("====================\n");
     EndGraphicDump();
-
 
     StartGraphicDump();
     printf("\n====================\n");
