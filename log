@@ -1,0 +1,47 @@
+
+====================
+CTOR, value = 2
+CTOR, value = 1
+operator<(const NotInt&
+CTOR(const NotInt&), value = 2
+max(1, 2) = 2
+STD DTOR, value = 2
+STD DTOR, value = 1
+STD DTOR, value = 2
+====================
+
+====================
+CTOR, value = 4
+CTOR, value = 3
+CTOR(const NotInt&), value = 4
+CTOR(const NotInt&), value = 4
+CTOR(const NotInt&), value = 3
+CTOR(const NotInt&), value = 3
+operator+(const NotInt&)
+CTOR, value = 7
+STD DTOR, value = 3
+STD DTOR, value = 3
+STD DTOR, value = 4
+STD DTOR, value = 4
+sum(3, 4) = 7
+STD DTOR, value = 7
+STD DTOR, value = 3
+STD DTOR, value = 4
+====================
+
+====================
+CTOR, value = 30
+CTOR, value = 20
+CTOR, value = 10
+operator+(const NotInt&)
+CTOR, value = 30
+operator+(const NotInt&)
+CTOR, value = 60
+STD DTOR, value = 30
+
+sum(10, 20, 30) = 60
+STD DTOR, value = 60
+STD DTOR, value = 10
+STD DTOR, value = 20
+STD DTOR, value = 30
+====================
