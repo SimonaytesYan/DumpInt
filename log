@@ -1,3 +1,5 @@
+g++ -fno-elide-constructors Src/main.cpp Obj/NotInt.o -o Exe/run
+./Exe/run
 
 ====================
 CTOR, value = 2

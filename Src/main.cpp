@@ -24,7 +24,6 @@ NotInt sum(NotInt a, NotInt b)
     return f(a) + f(b);
 }
 
-
 int main()
 {
     printf("\n====================\n");
@@ -36,6 +35,6 @@ int main()
     printf("====================\n");
     
     printf("\n====================\n");
-    printf("\nsum(10, 20, 30) = %d\n", sum(10, 20, 30).value);
+    printf("sum(10, 20, 30) = %d\n", sum(10, 20, 30).value);
     printf("====================\n");
 }
