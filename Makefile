@@ -12,7 +12,7 @@ $(OBJ)NotInt.o: $(SRC)NotInt/NotInt.cpp $(SRC)NotInt/NotInt.h
 	$(CPP) -c $(SRC)NotInt/NotInt.cpp -o $(OBJ)NotInt.o
 
 run:  all
-	./$(EXE)
+	./$(EXE) > log
 
 clean:
 	-cd $(OBJ); rm *

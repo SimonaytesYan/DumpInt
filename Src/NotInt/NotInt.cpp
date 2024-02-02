@@ -292,7 +292,6 @@ NotInt& NotInt::operator*()
     return *this;
 }
 
-
 NotInt::~NotInt()
 {
     printf("STD DTOR, value = %d id = %d\n", value, id);

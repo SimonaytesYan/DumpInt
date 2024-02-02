@@ -26,7 +26,7 @@ NotInt sum(NotInt a, NotInt b)
 
 int main()
 {
-    printf("\n====================\n");
+    printf("====================\n");
     printf("max(1, 2) = %d\n", max(1, 2).value);
     printf("====================\n");
     
