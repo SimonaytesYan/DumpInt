@@ -7,7 +7,10 @@
 class NotInt
 {
     public :
+    static int not_int_counter;
+    
     int value;
+    int id;
 
     //===============================CONSTRUCTORS===============================
 
