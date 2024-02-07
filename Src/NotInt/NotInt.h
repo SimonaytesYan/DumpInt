@@ -10,9 +10,10 @@ class NotInt
     static int   not_int_counter;
     static FILE* not_int_output;
     
-    int value;
-    int operation_count;
-    int id;
+    const char* color;
+    int         value;
+    int         operation_count;
+    int         id;
 
     //===============================CONSTRUCTORS===============================
 
