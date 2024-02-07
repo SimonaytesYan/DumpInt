@@ -1,7 +1,8 @@
 #include "NotInt.h"
 
-int   NotInt::not_int_counter = 0;
-FILE* NotInt::not_int_output  = nullptr;
+int   NotInt::not_int_counter   = 0;
+int   NotInt::bin_operation_cnt = 0;
+FILE* NotInt::not_int_output    = nullptr;
 
 const char* green_color = "#B1FF9F";
 const char* brown_color = "#B0AA91";
@@ -9,6 +10,19 @@ const char* brown_color = "#B0AA91";
 const char* NodePrototype          = "Node%d_%d[fillcolor = \"%s\", label = \"<i> id: %d | <v> val: %d \"]\n";
 const char* OperationNodePrototype = "Node%d_%d[label = \"%s\", shape = oval]\n";
 const char* EdgePrototype          = "Node%d_%d->Node%d_%d\n";
+
+const char* EdgeBinPrototype   = "Node%d_%d->NodeBin%d\n";
+const char* BinEdgePrototype   = "NodeBin%d->Node%d_%d\n";
+const char* BinOpNodePrototype = "NodeBin%d[label = \"%s\", shape = oval]\n";
+
+#define ADD_BINARY_OPER_NODE(operation)                                                                             \
+    NotInt::bin_operation_cnt++;                                                                                    \
+    fprintf(NotInt::not_int_output, BinOpNodePrototype, bin_operation_cnt, operation);                              \
+                                                                                                                    \
+    fprintf(NotInt::not_int_output, EdgeBinPrototype, id,       operation_count,       bin_operation_cnt);          \
+    fprintf(NotInt::not_int_output, EdgeBinPrototype, other.id, other.operation_count, bin_operation_cnt);          \
+    fprintf(NotInt::not_int_output, BinEdgePrototype, bin_operation_cnt, not_int_counter + 1, 1);
+
 
 #define ADD_OPERATION_NODE(operation)                                                               \
     fprintf(NotInt::not_int_output, OperationNodePrototype, id, operation_count, operation);        \
@@ -112,18 +126,9 @@ NotInt NotInt::operator+(const NotInt& other)
 {
     operation_count++;
     printf("operator+(const NotInt&) id = %d\n", id);
-    
-    //fprintf(NotInt::not_int_output, NodePrototype, id, operation_count, color, id, value);
-    //fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count, "+(other)");
 
-    fprintf(NotInt::not_int_output, OperationNodePrototype, id, operation_count, "+(other)");
-    fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count);
-
-    fprintf(NotInt::not_int_output, NodePrototype, id, ++operation_count, color, id, value);
-    fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count);
-    
-    fprintf(NotInt::not_int_output, EdgePrototype, id,       operation_count,       not_int_counter + 1, 1, "+");
-    fprintf(NotInt::not_int_output, EdgePrototype, other.id, other.operation_count, not_int_counter + 1, 1, "+");
+    ADD_OPERATION_NODE("+other");
+    ADD_BINARY_OPER_NODE("+");
     
     return value + other.value;
 }
@@ -133,6 +138,7 @@ NotInt NotInt::operator-(const NotInt& other)
     operation_count++;
     printf("operator-(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("-(other)");
+    ADD_BINARY_OPER_NODE("-");
     return value - other.value;
 }
 
@@ -141,6 +147,7 @@ NotInt NotInt::operator/(const NotInt& other)
     operation_count++;
     printf("operator/(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("/(other)");
+    ADD_BINARY_OPER_NODE("/");
     return value / other.value;
 }
 
@@ -149,6 +156,7 @@ NotInt NotInt::operator*(const NotInt& other)
     operation_count++;
     printf("operator*(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("*(other)");
+    ADD_BINARY_OPER_NODE("*");
     return value * other.value;
 }
 
@@ -157,6 +165,7 @@ NotInt NotInt::operator%(const NotInt& other)
     operation_count++;
     printf("operator%(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("%(other)");
+    ADD_BINARY_OPER_NODE("%s");
     return value % other.value;
 }
 
@@ -165,6 +174,7 @@ NotInt NotInt::operator&(const NotInt& other)
     operation_count++;
     printf("operator&(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("&(other)");
+    ADD_BINARY_OPER_NODE("&");
     return value & other.value;
 }
 
@@ -173,6 +183,7 @@ NotInt NotInt::operator|(const NotInt& other)
     operation_count++;
     printf("operator|(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("|(other)");
+    ADD_BINARY_OPER_NODE("|");
     return value | other.value;
 }
 
@@ -181,6 +192,7 @@ NotInt NotInt::operator^(const NotInt& other)
     operation_count++;
     printf("operator^(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("^(other)");
+    ADD_BINARY_OPER_NODE("^");
     return value ^ other.value;
 }
 
@@ -189,6 +201,7 @@ NotInt NotInt::operator<<(const NotInt& other)
     operation_count++;
     printf("operator<<(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE("<<(other)");
+    ADD_BINARY_OPER_NODE("<<");
     return value << other.value;
 }
 
@@ -197,6 +210,7 @@ NotInt NotInt::operator>>(const NotInt& other)
     operation_count++;
     printf("operator>>(const NotInt&) id = %d\n", id);
     ADD_OPERATION_NODE(">>(other)");
+    ADD_BINARY_OPER_NODE(">>");
     return value >> other.value;
 }
 
@@ -206,7 +220,7 @@ bool NotInt::operator||(const NotInt& other)
 {
     operation_count++;
     printf("operator||(const NotInt& id = %d\n", id);
-    ADD_OPERATION_NODE("||(other)");
+    ADD_OPERATION_NODE("||(other)"); 
     return value || other.value;;
 }
 

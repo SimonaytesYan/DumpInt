@@ -8,6 +8,7 @@ class NotInt
 {
     public :
     static int   not_int_counter;
+    static int   bin_operation_cnt;
     static FILE* not_int_output;
     
     const char* color;

@@ -1,4 +1,4 @@
-COMPILE_FLAGS = -fno-elide-constructors
+COMPILE_FLAGS = -fno-elide-constructors -O0
 CPP   		  = g++ $(COMPILE_FLAGS)
 
 OBJ = Obj/

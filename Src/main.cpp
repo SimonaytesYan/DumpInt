@@ -11,11 +11,6 @@ NotInt max(NotInt a, NotInt b)
     return a;
 }
 
-NotInt sum(NotInt a, NotInt b, NotInt c)
-{
-    return a + b + c;
-}
-
 NotInt f(NotInt a)
 {
     return a;
@@ -24,6 +19,11 @@ NotInt f(NotInt a)
 NotInt sum(NotInt a, NotInt b)
 {
     return f(a) + f(b);
+}
+
+NotInt sum(NotInt a, NotInt b, NotInt c)
+{
+    return a + b + c;
 }
 
 void StartGraphicDump()
