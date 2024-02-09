@@ -5,7 +5,7 @@ int   NotInt::bin_operation_cnt = 0;
 FILE* NotInt::not_int_output    = nullptr;
 
 const char* green_color = "#B1FF9F";
-const char* brown_color = "#B0AA91";
+const char* red_color   = "#FF4444";
 
 const char* NodePrototype          = "Node%d_%d[fillcolor = \"%s\", label = \"<i> id: %d | <v> val: %d \"]\n";
 const char* OperationNodePrototype = "Node%d_%d[label = \"%s\", shape = oval]\n";
@@ -59,11 +59,17 @@ NotInt::NotInt(int new_value)
 
     printf("CTOR, value = %d id = %d\n", value, id);
     fprintf(NotInt::not_int_output, NodePrototype, id, operation_count, color, id, value);
+
+    char ctor_name[30] = {};
+    sprintf(ctor_name, "ctor(%d)", new_value);
+
+    fprintf(NotInt::not_int_output, OperationNodePrototype, id, operation_count - 1, ctor_name);
+    fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count);
 }
 
 NotInt::NotInt(const NotInt& other)
 {
-    color = brown_color;
+    color = red_color;
     operation_count = 0;
     operation_count++;
     NotInt::not_int_counter++;
@@ -71,7 +77,7 @@ NotInt::NotInt(const NotInt& other)
     value = other.value;
 
     printf("CTOR(const NotInt&), value = %d id = %d\n", value, id);
-    fprintf(NotInt::not_int_output, OperationNodePrototype, id, operation_count, "CTOR");
+    fprintf(NotInt::not_int_output, OperationNodePrototype, id, operation_count, "ctor(NotInt&)");
     fprintf(NotInt::not_int_output, EdgePrototype, other.id, other.operation_count, id, operation_count);
 
     fprintf(NotInt::not_int_output, NodePrototype, id, ++operation_count, color, id, value);
@@ -439,5 +445,8 @@ NotInt::~NotInt()
 {
     operation_count++;
     printf("STD DTOR, value = %d id = %d\n", value, id);
-    ADD_OPERATION_NODE("DTOR")
+    
+    //ADD_OPERATION_NODE("dtor")
+    fprintf(NotInt::not_int_output, OperationNodePrototype, id, operation_count, "dtor");
+    fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count);
 }
