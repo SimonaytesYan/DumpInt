@@ -4,7 +4,8 @@ int   NotInt::not_int_counter   = 0;
 int   NotInt::bin_operation_cnt = 0;
 FILE* NotInt::not_int_output    = nullptr;
 
-const char* green_color = "#B1FF9F";
+const char* green_color = "#44FF44";
+const char* blue_color  = "#4444FF";
 const char* red_color   = "#FF4444";
 
 const char* NodePrototype          = "Node%d_%d[fillcolor = \"%s\", label = \"<i> id: %d | <v> val: %d \"]\n";
@@ -37,7 +38,7 @@ const char* BinOpNodePrototype = "NodeBin%d[label = \"%s\", shape = oval]\n";
 
 NotInt::NotInt()
 {
-    color = green_color;
+    color = blue_color;
     operation_count = 0;
     operation_count++;
     NotInt::not_int_counter++;
@@ -50,7 +51,7 @@ NotInt::NotInt()
 
 NotInt::NotInt(int new_value)
 {
-    color = green_color;
+    color = blue_color;
     operation_count = 0;
     operation_count++;
     NotInt::not_int_counter++;

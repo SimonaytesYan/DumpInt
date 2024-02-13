@@ -36,9 +36,9 @@ void StartGraphicDump()
 
     NotInt::not_int_output = fopen(file_name, "w");
     fprintf(NotInt::not_int_output, "digraph G{\n"
-                    "rankdir = LR;\n"
-                    "node[shape = record, fontsize = 14, style=filled];\n"
-                    "splines = ortho\n");
+                                    //"rankdir = LR;\n"
+                                    "node[shape = record, fontsize = 14, style=filled];\n"
+                                    "splines = ortho\n");
 }
 
 void EndGraphicDump()
