@@ -1,5 +1,6 @@
-COMPILE_FLAGS = -fno-elide-constructors -O0
-CPP   		  = g++ $(COMPILE_FLAGS)
+COMPILE_FLAGS     = -fno-elide-constructors -O0
+BETTER_COMP_FLAGS = -O2 
+CPP   		      = g++ $(BETTER_COMP_FLAGS)
 
 OBJ = Obj/
 SRC	= Src/
