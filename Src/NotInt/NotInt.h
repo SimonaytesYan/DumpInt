@@ -25,21 +25,8 @@ class NotInt
 
     //===============================ARITHMETIC=================================
 
-    NotInt& operator++();
-    NotInt& operator--();
-    NotInt  operator+();
-    NotInt  operator-();
-    NotInt  operator~();
-    NotInt  operator+(const NotInt& other);
-    NotInt  operator-(const NotInt& other);
-    NotInt  operator/(const NotInt& other);
-    NotInt  operator*(const NotInt& other);
-    NotInt  operator%(const NotInt& other);
-    NotInt  operator&(const NotInt& other);
-    NotInt  operator|(const NotInt& other);
-    NotInt  operator^(const NotInt& other);
-    NotInt  operator<<(const NotInt& other);
-    NotInt  operator>>(const NotInt& other);
+    /* All binary arithmetic operations is better to do, using assignments. 
+     * For example, instead of using + you should use +=. */
 
     //==================================LOGICAL=================================
 
@@ -74,11 +61,6 @@ class NotInt
     NotInt& operator<<=(const NotInt& other);
 
     //===================================OTHER==================================
-
-    NotInt& operator[](const NotInt& index);
-    NotInt& operator()();
-    NotInt& operator->();
-    NotInt& operator*();
 
     ~NotInt();
 };

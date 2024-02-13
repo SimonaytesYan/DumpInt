@@ -102,142 +102,6 @@ NotInt::NotInt(NotInt&& other)
     fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count);
 }
 
-//=================================ARITHMETIC===================================
-
-NotInt& NotInt::operator++()
-{
-    operation_count++;
-    value++;
-    printf("operator++, value = %d id = %d\n", value, id);
-    ADD_OPERATION_NODE("++");
-    return *this;
-}
-
-NotInt& NotInt::operator--()
-{
-    operation_count++;
-    value--;
-    printf("operator++, value = %d id = %d\n", value, id);
-    ADD_OPERATION_NODE("--");
-    return *this;
-}
-
-NotInt NotInt::operator+()
-{
-    operation_count++;
-    printf("operator+() id = %d\n", id);
-    ADD_OPERATION_NODE("+()");
-    return *this;
-}
-
-NotInt NotInt::operator-()
-{
-    operation_count++;
-    printf("operator-() id = %d\n", id);
-    ADD_OPERATION_NODE("-()");
-    return -value;
-}
-
-NotInt NotInt::operator~()
-{
-    operation_count++;
-    printf("operator~() id = %d\n", id);
-    ADD_OPERATION_NODE("~");
-    return ~value;
-}
-
-NotInt NotInt::operator+(const NotInt& other)
-{
-    operation_count++;
-    printf("operator+(const NotInt&) id = %d\n", id);
-
-    ADD_OPERATION_NODE("+other");
-    ADD_BINARY_OPER_NODE("+");
-    
-    return value + other.value;
-}
-    
-NotInt NotInt::operator-(const NotInt& other)
-{
-    operation_count++;
-    printf("operator-(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("-(other)");
-    ADD_BINARY_OPER_NODE("-");
-    return value - other.value;
-}
-
-NotInt NotInt::operator/(const NotInt& other)
-{
-    operation_count++;
-    printf("operator/(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("/(other)");
-    ADD_BINARY_OPER_NODE("/");
-    return value / other.value;
-}
-
-NotInt NotInt::operator*(const NotInt& other)
-{
-    operation_count++;
-    printf("operator*(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("*(other)");
-    ADD_BINARY_OPER_NODE("*");
-    return value * other.value;
-}
-
-NotInt NotInt::operator%(const NotInt& other)
-{
-    operation_count++;
-    printf("operator%(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("%(other)");
-    ADD_BINARY_OPER_NODE("%s");
-    return value % other.value;
-}
-
-NotInt NotInt::operator&(const NotInt& other)
-{
-    operation_count++;
-    printf("operator&(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("&(other)");
-    ADD_BINARY_OPER_NODE("&");
-    return value & other.value;
-}
-
-NotInt NotInt::operator|(const NotInt& other)
-{
-    operation_count++;
-    printf("operator|(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("|(other)");
-    ADD_BINARY_OPER_NODE("|");
-    return value | other.value;
-}
-
-NotInt NotInt::operator^(const NotInt& other)
-{
-    operation_count++;
-    printf("operator^(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("^(other)");
-    ADD_BINARY_OPER_NODE("^");
-    return value ^ other.value;
-}
-
-NotInt NotInt::operator<<(const NotInt& other)
-{
-    operation_count++;
-    printf("operator<<(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE("<<(other)");
-    ADD_BINARY_OPER_NODE("<<");
-    return value << other.value;
-}
-
-NotInt NotInt::operator>>(const NotInt& other)
-{
-    operation_count++;
-    printf("operator>>(const NotInt&) id = %d\n", id);
-    ADD_OPERATION_NODE(">>(other)");
-    ADD_BINARY_OPER_NODE(">>");
-    return value >> other.value;
-}
-
 //=====================================LOGICAL==================================
 
 bool NotInt::operator||(const NotInt& other)
@@ -349,7 +213,12 @@ NotInt& NotInt::operator+=(const NotInt& other)
     operation_count++;
     value += other.value;
     printf("operator+=(const NotInt&, value = %d id = %d\n", value, id);
+    //ADD_OPERATION_NODE("+=(NotInt)");
+
     ADD_OPERATION_NODE("+=(NotInt)");
+    fprintf(NotInt::not_int_output, EdgePrototype, other.id, other.operation_count, id, operation_count - 1);   \
+
+    //fprintf(NotInt::not_int_output, EdgePrototype, other.id, other.operation_count, id, operation_count);
     return *this;
 }
 
@@ -434,39 +303,7 @@ NotInt& NotInt::operator<<=(const NotInt& other)
     return *this;
 }
 
-    //===================================OTHER==================================
-
-NotInt& NotInt::operator[](const NotInt& index)
-{
-    operation_count++;
-    printf("operator[%d](const NotInt&, value = %d id = %d\n", index.value, value, id);
-    ADD_OPERATION_NODE("[]");
-    return *this;
-}
-
-NotInt& NotInt::operator()()
-{
-    operation_count++;
-    printf("operator()(const NotInt&, value = %d id = %d\n", value, id);
-    ADD_OPERATION_NODE("()");
-    return *this;
-}
-
-NotInt& NotInt::operator->()
-{
-    operation_count++;
-    printf("operator->(const NotInt&, value = %d id = %d\n", value, id);
-    ADD_OPERATION_NODE("->");
-    return *this;
-}
-
-NotInt& NotInt::operator*()
-{
-    operation_count++;
-    printf("operator*(const NotInt&, value = %d id = %d\n", value, id);
-    ADD_OPERATION_NODE("*()");
-    return *this;
-}
+//===================================OTHER==================================
 
 NotInt::~NotInt()
 {

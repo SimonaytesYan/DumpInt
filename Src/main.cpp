@@ -18,12 +18,17 @@ NotInt f(NotInt a)
 
 NotInt sum(NotInt a, NotInt b)
 {
-    return f(a) + f(b);
+    NotInt res = (NotInt&&)f(a);
+    res += f(b);
+    return res;
 }
 
 NotInt sum(NotInt a, NotInt b, NotInt c)
 {
-    return a + b + c;
+    a += b;
+    a += c;
+
+    return a;
 }
 
 void StartGraphicDump()
