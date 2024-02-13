@@ -6,6 +6,10 @@ We create int-like type `NotInt` with dumps in every operator, constructor and d
 
 ## Optimizations
 
+We will optimize this simple function.
+
+![](Image/Function0.png)
+
 ### Map legend 
 * `Blue rectangles`  - permanent objects
 * `Green rectangles` - permanent objects, created using move semantic
@@ -19,7 +23,15 @@ We create int-like type `NotInt` with dumps in every operator, constructor and d
 ![](Images/Step1.png)
 
 ### Replace operations that generate harmful constructions
-Let`s remove 
+Let`s remove operations, that cause harmful constructions. For example, binary + often could generate additional copy constructor.
+Then code of out function will change.
+
+![](Image/Function1.png)
+
+And we will get this situation.
+![](Images/Step2.png)
+
+### Turn off -fno-elide-constructors compiler flag
 
 ## Configuration ##
 
