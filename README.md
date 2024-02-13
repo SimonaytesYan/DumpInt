@@ -32,7 +32,7 @@ And we will get this situation.
 ![](Images/Step2.png)
 
 ### Final result
-Let's turn off -fno-elide-constructors + add -O2 compiler flags. But it doesn`t change anything.
+Let's turn off -fno-elide-constructors + add -O2 compiler flags.
 ![](Images/Step3.png)
 
 
