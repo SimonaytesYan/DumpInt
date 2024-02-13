@@ -85,6 +85,23 @@ NotInt::NotInt(const NotInt& other)
     fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count);
 }
 
+NotInt::NotInt(NotInt&& other)
+{
+    color = green_color;
+    operation_count = 0;
+    operation_count++;
+    NotInt::not_int_counter++;
+    id    = not_int_counter;
+    value = other.value;
+
+    printf("CTOR(const NotInt&), value = %d id = %d\n", value, id);
+    fprintf(NotInt::not_int_output, OperationNodePrototype, id, operation_count, "ctor(NotInt&&)");
+    fprintf(NotInt::not_int_output, EdgePrototype, other.id, other.operation_count, id, operation_count);
+
+    fprintf(NotInt::not_int_output, NodePrototype, id, ++operation_count, color, id, value);
+    fprintf(NotInt::not_int_output, EdgePrototype, id, operation_count - 1, id, operation_count);
+}
+
 //=================================ARITHMETIC===================================
 
 NotInt& NotInt::operator++()
@@ -298,7 +315,7 @@ bool NotInt::operator>=(const NotInt& other)
     return value >= other.value;
 }
 
-    //=================================ASSIGNMENT===============================
+//===================================ASSIGNMENT=================================
 
 NotInt& NotInt::operator=(int new_value)
 {
@@ -314,7 +331,16 @@ NotInt& NotInt::operator=(const NotInt& other)
     operation_count++;
     value = other.value;
     printf("operator= const NotInt&, value = %d id = %d\n", value, id);
-    ADD_OPERATION_NODE("=(NotInt)");
+    ADD_OPERATION_NODE("=(NotInt&)");
+    return *this;
+}
+
+NotInt& NotInt::operator=(NotInt&& other)
+{
+    operation_count++;
+    value = other.value;
+    printf("operator= const NotInt&&, value = %d id = %d\n", value, id);
+    ADD_OPERATION_NODE("=(NotInt&&)");
     return *this;
 }
 

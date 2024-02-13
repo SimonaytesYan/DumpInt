@@ -20,7 +20,8 @@ class NotInt
 
     NotInt();
     NotInt(int new_value);
-    NotInt(const NotInt& other);
+    NotInt(const NotInt&  other);
+    NotInt(NotInt&& other);
 
     //===============================ARITHMETIC=================================
 
@@ -57,8 +58,10 @@ class NotInt
 
     //=================================ASSIGNMENT===============================
 
-    NotInt& operator=  (int new_value);
     NotInt& operator=  (const NotInt& other);
+    NotInt& operator=  (NotInt&& other);
+    NotInt& operator=  (int new_value);
+    
     NotInt& operator+= (const NotInt& other);
     NotInt& operator-= (const NotInt& other);
     NotInt& operator/= (const NotInt& other);
