@@ -8,7 +8,7 @@ We create int-like type `NotInt` with dumps in every operator, constructor and d
 
 We will optimize this simple function.
 
-![](Image/Function0.png)
+![](Images/Function0.png)
 
 ### Map legend 
 * `Blue rectangles`  - permanent objects
@@ -26,7 +26,7 @@ We will optimize this simple function.
 Let`s remove operations, that cause harmful constructions. For example, binary + often could generate additional copy constructor.
 Then code of out function will change.
 
-![](Image/Function1.png)
+![](Images/Function1.png)
 
 And we will get this situation.
 ![](Images/Step2.png)
